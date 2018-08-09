@@ -7,7 +7,7 @@ echo "stop $project_name..."
 docker ps -a | grep $1 | awk '{print $1}' | xargs -I % sh -c "docker stop % && docker rm %"
 
 echo "start $project_name port=$port ..."
-log_dir="/logs/docker/images/$1"
+log_dir="/logs/docker/container/$1"
 log_file="$log_dir/server.log"
 if [ ! -d "$log_dir" ]; then
   mkdir $log_dir
