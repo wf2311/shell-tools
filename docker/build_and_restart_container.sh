@@ -13,3 +13,4 @@ if [ ! -d "$log_dir" ]; then
   mkdir $log_dir
 fi
 docker run   -v $log_dir:/home/app -w /home/app -p $port:$port --name $project_name -d $project_name:lastet
+docker rmi -f  `docker images | grep '<none>' | awk '{print $3}'`
