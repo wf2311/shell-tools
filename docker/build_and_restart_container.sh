@@ -1,7 +1,9 @@
 project_name=$1
 port=$2
+echo "同步项目源码..."
 cd /data/Projects/$project_name
 git pull
+echo "编译项目..."
 mvn -DskipTests clean package docker:build
 echo "stop $project_name..."
 docker ps -a | grep $1 | awk '{print $1}' | xargs -I % sh -c "docker stop % && docker rm %"
